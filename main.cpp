@@ -37,7 +37,6 @@ int main()
         trie->insert(str.data());
 
     auto stop = std::chrono::high_resolution_clock::now();
-
     auto elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
 
     std::cout << "Strings loaded in Trie: " << trie->string_count;
@@ -53,7 +52,7 @@ int main()
         start = std::chrono::high_resolution_clock::now();
 
         bool found = trie->contains(search_string.data());
-        auto prefix = trie->starts_with(search_string.data());
+        auto prefixed = trie->starts_with(search_string.data());
 
         stop = std::chrono::high_resolution_clock::now();
         elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
@@ -64,7 +63,10 @@ int main()
             std::cout << "\nString: '" << search_string << "' not found.\n";
 
         std::cout << "Strings with prefix '" << search_string << "': ";
-        std::cout << prefix.size() <<  " (" << elapsed.count() << " ms)\n\n";
+        std::cout << prefixed.size() <<  " (" << elapsed.count() << " ms)\n\n";
+
+        for(const auto &str: prefixed)
+            std::cout << str << '\n';
     }
 
     return 0;

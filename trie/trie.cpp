@@ -140,10 +140,10 @@ char* Trie::trace_string(Node *node)
     current_node = node;
 
     char *str;
-    str = (char*)malloc(sizeof(char) * node->depth);
+    str = (char*)malloc(sizeof(char) * node->depth + 1);
 
     if(str)
-        str[node->depth - 1] = 0;
+        str[node->depth] = 0;
     else
         return nullptr;
 
