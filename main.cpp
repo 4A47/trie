@@ -64,9 +64,6 @@ int main()
 
         std::cout << "Strings with prefix '" << search_string << "': ";
         std::cout << prefixed.size() <<  " (" << elapsed.count() << " ms)\n\n";
-
-        for(const auto &str: prefixed)
-            std::cout << str << '\n';
     }
 
     return 0;
