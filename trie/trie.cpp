@@ -33,7 +33,7 @@ void Trie::dfs(Node *node, std::map<Node*, bool> &visited, std::vector<char*> &s
 
     for(const auto& [key, n]: node->children)
     {
-        if(!visited.contains(n))
+        if(visited.count(n) == 0) 
             dfs(n, visited, strings);
     }
 }
@@ -45,12 +45,12 @@ Node *Trie::get_node(const char *str)
 
     for(int i = 0; i < len; i++)
     {
-        if(current_node->children.contains(str[i]))
+        if(current_node->children.count(str[i]) > 0)
         {
             current_node = current_node->children[str[i]];
             if(i + 1 == len) return current_node;
         }
-        else if(!case_sensitive && current_node->children.contains(char(str[i] - 32)))
+        else if(!case_sensitive && current_node->children.count(char(str[i] - 32)) > 0)
         {
             current_node = current_node->children[char(str[i] - 32)];
             if(i + 1 == len) return current_node;
@@ -69,7 +69,7 @@ void Trie::insert(const char *str)
 
     for(int i = 0; i < len; i++)
     {
-        if(!current_node->children.contains(str[i]))
+        if(current_node->children.count(str[i]) == 0)
         {
             Node *node = new Node();
             node->parent = current_node;

@@ -52,8 +52,7 @@ trie->case_sensitive = false;
 ```
 
 #### Compiling
-C++ 20 needed for std::map::contains
 
 ```
-g++ main.cpp trie/trie.cpp -std=gnu++2a -Wall -Wextra -Werror -O3 -o search
+g++ main.cpp trie/trie.cpp -std=gnu++17 -Wall -Wextra -Werror -O3 -o search
 ```
