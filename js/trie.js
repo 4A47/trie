@@ -57,7 +57,7 @@ module.exports = class Trie {
                 currentNode = currentNode.children[str[i]];
                 if(i + 1 === len) { return currentNode; }
             }
-            else if(!this.case_sensitive && (str.charCodeAt(i) - 32) in currentNode.children) {
+            else if(!this.caseSensitive && (str.charCodeAt(i) - 32) in currentNode.children) {
                 currentNode = currentNode.children[str.charCodeAt(i) - 32];
                 if(i + 1 === len) { return currentNode; }
             }
