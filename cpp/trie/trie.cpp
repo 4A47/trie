@@ -8,7 +8,7 @@ Trie::Trie()
     root = new Node();
     string_count = 0;
     current_node = nullptr;
-    case_sensitive = true;
+    case_sensitive = false;
 }
 
 bool Trie::contains(const char *str)
@@ -26,7 +26,7 @@ void Trie::dfs(Node *node, std::map<Node*, bool> &visited, std::vector<char*> &s
     visited[node] = true;
 
     if(node->is_string)
-    {
+{
         char *str = trace_string(node);
         if(str) strings.push_back(str);
     }
