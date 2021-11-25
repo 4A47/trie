@@ -57,9 +57,12 @@ module.exports = class Trie {
                 currentNode = currentNode.children[str[i]];
                 if(i + 1 === len) { return currentNode; }
             }
-            else if(!this.caseSensitive && (str.charCodeAt(i) - 32) in currentNode.children) {
-                currentNode = currentNode.children[str.charCodeAt(i) - 32];
-                if(i + 1 === len) { return currentNode; }
+            else if(!this.caseSensitive) {
+                let char = this.switchCase(str[i]); 
+                if(char in currentNode.children) {
+                    currentNode = currentNode.children[char]
+                    if(i + 1 === len) { return currentNode; }
+                }
             }
             else { break; }
         }
@@ -86,10 +89,18 @@ module.exports = class Trie {
         }
     }
 
-    _remove(node, key) {
-        node.children.delete(key);
+    switchCase(char) {
+        if(char == char.toLowerCase() && char != char.toUpperCase()) {
+            return char.toUpperCase();
+        } else {
+            return char.toLowerCase();
+        }
+    }
 
-        if(node.children.size > 0 || node.parent === null) {
+    _remove(node, key) {
+        delete node.children[key];
+
+        if(Object.keys(node.children).length > 0 || node.parent === null) {
             return;
         }
 
