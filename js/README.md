@@ -3,13 +3,13 @@ A Trie data structure for strings in JS
 
 #### Install
 ```
-npm i @borisfenster/trie
+npm i @joenano/trie
 ```
 
 #### Import
 
 ```js
-const Trie = require('@borisfenster/trie');
+const Trie = require('@joenano/trie');
 ```
 
 #### Insert
