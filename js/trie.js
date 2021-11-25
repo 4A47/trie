@@ -87,7 +87,7 @@ module.exports = class Trie {
     }
 
     _remove(node, key) {
-        node.children.devare(key);
+        node.children.delete(key);
 
         if(node.children.size > 0 || node.parent === null) {
             return;
