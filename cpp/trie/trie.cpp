@@ -26,7 +26,7 @@ void Trie::dfs(Node *node, std::map<Node*, bool> &visited, std::vector<char*> &s
     visited[node] = true;
 
     if(node->is_string)
-{
+    {
         char *str = trace_string(node);
         if(str) strings.push_back(str);
     }
@@ -50,13 +50,17 @@ Node *Trie::get_node(const char *str)
             current_node = current_node->children[str[i]];
             if(i + 1 == len) return current_node;
         }
-        else if(!case_sensitive && current_node->children.count(char(str[i] - 32)) > 0)
+        else if(!case_sensitive)
         {
-            current_node = current_node->children[char(str[i] - 32)];
-            if(i + 1 == len) return current_node;
+            char c = switch_case(str[i]);
+            
+            if(current_node->children.count(c) > 0)
+            {
+                current_node = current_node->children[c];
+                if(i + 1 == len) return current_node;
+            }
         }
-        else
-            break;
+        else break;
     }
 
     return nullptr;
@@ -133,6 +137,11 @@ std::vector<char*> Trie::strings_from_node(Node *node)
     dfs(node, visited, strings);
 
     return strings;
+}
+
+char Trie::switch_case(char c)
+{
+    return c > 96? c - 32 : c + 32;
 }
 
 char* Trie::trace_string(Node *node)

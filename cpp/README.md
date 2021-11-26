@@ -46,9 +46,9 @@ std::cout << "Strings in trie: " << trie->string_count << '\n';
 ```
 
 #### Case Sensitivity
-Set case sensitivity for searches. True by default.
+Set case sensitivity for searches. False by default.
 ```c++
-trie->case_sensitive = false;
+trie->case_sensitive = true;
 ```
 
 #### Compiling
