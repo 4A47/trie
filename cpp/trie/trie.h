@@ -5,9 +5,11 @@ struct Node
 {
     Node *parent;
     std::map<char, Node*> children;
-    int depth;
     char c;
+    int depth;
     bool is_string;
+
+    Node(Node *parent = nullptr, char c = 0, int depth = 0);
 };
 
 class Trie

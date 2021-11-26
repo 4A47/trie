@@ -1,7 +1,13 @@
 #include <string.h>
-#include <iostream>
 
 #include "trie.h"
+
+Node::Node(Node *parent, char c, int depth)
+{
+    this->parent = parent;
+    this->c = c;
+    this->depth = depth;
+}
 
 Trie::Trie()
 {
@@ -53,7 +59,7 @@ Node *Trie::get_node(const char *str)
         else if(!case_sensitive)
         {
             char c = switch_case(str[i]);
-            
+
             if(current_node->children.count(c) > 0)
             {
                 current_node = current_node->children[c];
@@ -75,10 +81,7 @@ void Trie::insert(const char *str)
     {
         if(current_node->children.count(str[i]) == 0)
         {
-            Node *node = new Node();
-            node->parent = current_node;
-            node->c = str[i];
-            node->depth = i + 1;
+            Node *node = new Node(current_node, str[i], i +1);
             current_node->children[node->c] = node;
         }
 
