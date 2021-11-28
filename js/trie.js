@@ -7,8 +7,7 @@ class Node {
     }
 }
 
-// module.exports = class Trie {
-class Trie {
+module.exports = class Trie {
     constructor() {
         this.root = new Node();
         this.cache = {};
