@@ -3,7 +3,10 @@
     "version": "0.0.6",
     "description": "A Trie data structure for strings",
     "license": "MIT",
-    "repository": "joenano/trie/js",
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/joenano/trie.git"
+    },
     "main": "trie.js",
     "keywords": [
         "trie",
