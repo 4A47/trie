@@ -24,7 +24,7 @@ if(trie->contains("a string"))
 Get vector of strings starting with a given prefix.
 
 ```c++
-auto prefixed = trie->starts_with("a str");
+auto prefixed = trie->find("a str");
 
 for(const auto &str: prefixed)
     std::cout << str << '\n';
@@ -44,6 +44,16 @@ Number of strings in trie.
 ```c++
 std::cout << "Strings in trie: " << trie->string_count << '\n';
 ```
+
+#### Caching
+Vector results from find are cached by default, you can disable caching and clear the cache.
+
+```c++
+trie->clear_cache();
+
+trie->caching = false;
+```
+
 
 #### Case Sensitivity
 Set case sensitivity for searches. False by default.

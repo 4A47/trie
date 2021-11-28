@@ -2,11 +2,11 @@
 
 #include "trie.h"
 
-Node::Node(Node *parent, char c, int depth)
+Node::Node(Node *parent=nullptr, char c=0, size_t depth=0)
 {
     this->parent = parent;
-    this->c = c;
     this->depth = depth;
+    this->c = c;
 }
 
 Trie::Trie()
@@ -14,7 +14,16 @@ Trie::Trie()
     root = new Node();
     string_count = 0;
     current_node = nullptr;
+    caching = true;
     case_sensitive = false;
+}
+
+void Trie::clear_cache()
+{
+    for(const auto &search: cache)
+        delete search.second;
+
+    cache.clear();
 }
 
 bool Trie::contains(const char *str)
@@ -42,6 +51,26 @@ void Trie::dfs(Node *node, std::map<Node*, bool> &visited, std::vector<char*> &s
         if(visited.count(n) == 0) 
             dfs(n, visited, strings);
     }
+}
+
+std::vector<char*> Trie::find(const char *str)
+{
+    if(caching && cache.count(str) > 0)
+        return *cache[str];
+
+    current_node = get_node(str);
+
+    if(current_node)
+    {
+        auto strings = strings_from_node(current_node);
+        
+        if(caching)
+            cache[str] = strings;
+        
+        return *strings;
+    }
+
+    return {};
 }
 
 Node *Trie::get_node(const char *str)
@@ -122,22 +151,13 @@ void Trie::remove(const char *str)
     }
 }
 
-std::vector<char*> Trie::starts_with(const char *str)
+std::vector<char*> *Trie::strings_from_node(Node *node)
 {
-    current_node = get_node(str);
+    auto strings = new std::vector<char*>;
 
-    if(current_node)
-        return strings_from_node(current_node);
-
-    return {};
-}
-
-std::vector<char*> Trie::strings_from_node(Node *node)
-{
-    std::vector<char*> strings;
     std::map<Node*, bool> visited;
 
-    dfs(node, visited, strings);
+    dfs(node, visited, *strings);
 
     return strings;
 }

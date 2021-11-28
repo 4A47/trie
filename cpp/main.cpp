@@ -52,7 +52,7 @@ int main()
         start = std::chrono::high_resolution_clock::now();
 
         bool found = trie->contains(search_string.data());
-        auto prefixed = trie->starts_with(search_string.data());
+        auto prefixed = trie->find(search_string.data());
 
         stop = std::chrono::high_resolution_clock::now();
         elapsed = std::chrono::duration_cast<std::chrono::milliseconds>(stop - start);
