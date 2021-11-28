@@ -1,6 +1,6 @@
 {
     "name": "@joenano/trie",
-    "version": "0.0.6",
+    "version": "0.0.7",
     "description": "A Trie data structure for strings",
     "license": "MIT",
     "repository": {

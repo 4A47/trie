@@ -17,10 +17,9 @@ module.exports = class Trie {
     }
 
     clearCache() {
-        for(search in this.cache)
+        for(search in this.cache) {
             delete this.cache[search];
-
-        delete this.cache;
+        }
     }
 
     contains(str) {
