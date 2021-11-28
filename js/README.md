@@ -53,6 +53,14 @@ let found = trie.find('str');
 // found = ['string 2', 'string 3']
 ```
 
+#### Caching
+Array results of find are cached by default, you can disbale this and clear the cache.
+
+```js
+trie.clearCache();
+
+trie.caching = false;
+```
 
 #### String count
 

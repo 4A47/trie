@@ -7,11 +7,21 @@ class Node {
     }
 }
 
-module.exports = class Trie {
+// module.exports = class Trie {
+class Trie {
     constructor() {
         this.root = new Node();
+        this.cache = {};
         this.stringCount = 0;
+        this.caching = true;
         this.caseSensitive = false;
+    }
+
+    clearCache() {
+        for(search in this.cache)
+            delete this.cache[search];
+
+        delete this.cache;
     }
 
     contains(str) {
@@ -39,10 +49,18 @@ module.exports = class Trie {
     }
 
     find(prefix) {
+        if(this.caching && prefix in this.cache) {
+            return this.cache[prefix];
+        }
+
         var currentNode = this.getNode(prefix);
 
         if(currentNode !== null) {
-            return this.stringsFromNode(currentNode);
+            var strings = this.stringsFromNode(currentNode);
+            
+            if(this.caching) { this.cache[prefix] = strings; }
+
+            return strings
         }
 
         return [];
