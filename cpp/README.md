@@ -54,13 +54,6 @@ trie->clear_cache();
 trie->caching = false;
 ```
 
-
-#### Case Sensitivity
-Set case sensitivity for searches. False by default.
-```c++
-trie->case_sensitive = true;
-```
-
 #### Compiling
 
 ```

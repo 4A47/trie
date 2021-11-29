@@ -67,10 +67,3 @@ trie.caching = false;
 ```js
 console.log('Strings in trie: ', trie.stringCount);
 ```
-
-#### Case Sensitivity
-Set case sensitivity for searches. False by default.
-
-```js
-trie.caseSensitive = true;
-```

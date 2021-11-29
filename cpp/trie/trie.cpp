@@ -15,7 +15,6 @@ Trie::Trie()
     string_count = 0;
     current_node = nullptr;
     caching = true;
-    case_sensitive = false;
 }
 
 void Trie::clear_cache()
@@ -85,16 +84,6 @@ Node *Trie::get_node(const char *str)
             current_node = current_node->children[str[i]];
             if(i + 1 == len) return current_node;
         }
-        else if(!case_sensitive)
-        {
-            char c = switch_case(str[i]);
-
-            if(current_node->children.count(c) > 0)
-            {
-                current_node = current_node->children[c];
-                if(i + 1 == len) return current_node;
-            }
-        }
         else break;
     }
 
@@ -160,11 +149,6 @@ std::vector<char*> *Trie::strings_from_node(Node *node)
     dfs(node, visited, *strings);
 
     return strings;
-}
-
-char Trie::switch_case(char c)
-{
-    return c > 96? c - 32 : c + 32;
 }
 
 char* Trie::trace_string(Node *node)

@@ -24,19 +24,15 @@ class Trie
     void dfs(Node* node, std::map<Node*, bool> &visited, std::vector<char*> &strings);
     Node *get_node(const char *str);
     std::vector<char*> *strings_from_node(Node *node);
-    char switch_case(char c);
     char *trace_string(Node *node);
 
 public:
     size_t string_count;
-    
     bool caching;
-    bool case_sensitive;
 
     Trie();
 
     void clear_cache();
-
     bool contains(const char *str);
     void insert(const char *str);
     void remove(const char *str);

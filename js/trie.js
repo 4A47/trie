@@ -13,7 +13,6 @@ module.exports = class Trie {
         this.cache = {};
         this.stringCount = 0;
         this.caching = true;
-        this.caseSensitive = false;
     }
 
     clearCache() {
@@ -72,15 +71,7 @@ module.exports = class Trie {
             if(str[i] in currentNode.children) {
                 currentNode = currentNode.children[str[i]];
                 if(i + 1 === len) { return currentNode; }
-            }
-            else if(!this.caseSensitive) {
-                let char = this.switchCase(str[i]); 
-                if(char in currentNode.children) {
-                    currentNode = currentNode.children[char]
-                    if(i + 1 === len) { return currentNode; }
-                }
-            }
-            else { break; }
+            } else { break; }
         }
 
         return null;
@@ -102,14 +93,6 @@ module.exports = class Trie {
                 currentNode.isString = true;
                 this.stringCount++;
             }
-        }
-    }
-
-    switchCase(char) {
-        if(char == char.toLowerCase() && char != char.toUpperCase()) {
-            return char.toUpperCase();
-        } else {
-            return char.toLowerCase();
         }
     }
 
