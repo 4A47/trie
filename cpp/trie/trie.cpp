@@ -129,7 +129,7 @@ void Trie::remove(const char *str)
 {
     current_node = get_node(str);
 
-    if(current_node)
+    if(current_node && current_node->is_string)
     {
         if(!current_node->children.empty())
             current_node->is_string = false;
