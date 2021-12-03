@@ -109,8 +109,7 @@ module.exports = class Trie {
     remove(str) {
         var currentNode = this.getNode(str);
 
-        if(currentNode !== null)
-        {
+        if(currentNode !== null && currentNode.isString) {
             if(currentNode.children.size > 0) {
                 currentNode.isString = false;
             } else {
