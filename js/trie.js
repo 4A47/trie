@@ -16,7 +16,7 @@ module.exports = class Trie {
     }
 
     clearCache() {
-        for(search in this.cache) {
+        for(let search in this.cache) {
             delete this.cache[search];
         }
     }
@@ -108,15 +108,16 @@ module.exports = class Trie {
 
     remove(str) {
         var currentNode = this.getNode(str);
-
+        
         if(currentNode !== null && currentNode.isString) {
-            if(currentNode.children.size > 0) {
+            if(Object.keys(currentNode.children).length > 0) {
                 currentNode.isString = false;
             } else {
                 this._remove(currentNode.parent, currentNode.char);
             }
-
+            
             this.stringCount--;
+            this.clearCache()
         }
     }
 

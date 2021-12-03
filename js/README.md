@@ -54,12 +54,18 @@ let found = trie.find('str');
 ```
 
 #### Caching
-Array results of find are cached by default, you can disbale this and clear the cache.
+Array results of find are cached by default, you can disbale this by setting caching to false.
 
 ```js
+trie.caching = false;
+```
+
+The cache is cleared automatically if a string is removed from the trie, but if you insert after the initial build you will have to manually clear the cache.
+
+```js
+trie.insert('new string');
 trie.clearCache();
 
-trie.caching = false;
 ```
 
 #### String count
