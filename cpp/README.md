@@ -37,7 +37,6 @@ Remove a string from trie.
 trie->remove("a string");
 ```
 
-
 #### String count
 Number of strings in trie.
 
@@ -46,12 +45,17 @@ std::cout << "Strings in trie: " << trie->string_count << '\n';
 ```
 
 #### Caching
-Vector results from find are cached by default, you can disable caching and clear the cache.
+Vector results of find are cached by default, you can disbale this by setting caching to false.
 
 ```c++
-trie->clear_cache();
-
 trie->caching = false;
+```
+
+The cache is cleared automatically if a string is removed from the trie, but if you insert after the initial build you will have to manually clear the cache.
+
+```c++
+trie->insert("new string");
+trie->clear_cache();
 ```
 
 #### Compiling

@@ -10,7 +10,7 @@ struct Node
     char c;
     bool is_string;
 
-    Node(Node *parent, char c, size_t depth);
+    Node(Node *parent=nullptr, char c=0, size_t depth=0);
 };
 
 class Trie

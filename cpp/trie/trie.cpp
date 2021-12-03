@@ -2,7 +2,7 @@
 
 #include "trie.h"
 
-Node::Node(Node *parent=nullptr, char c=0, size_t depth=0)
+Node::Node(Node *parent, char c, size_t depth)
 {
     this->parent = parent;
     this->depth = depth;
@@ -137,6 +137,7 @@ void Trie::remove(const char *str)
             _remove(current_node->parent, current_node->c);
 
         string_count--;
+        clear_cache();
     }
 }
 
