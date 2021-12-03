@@ -38,9 +38,10 @@ if(trie.contains('string 1')) {
 Returns array of strings with a given prefix.
 
 ```js
-let found = trie.find('str');
+var found = trie.find('str');
 
-// found = ['string 1', 'string 2', 'string 3']
+console.log(found);
+// ['string 1', 'string 2', 'string 3']
 ```
 
 #### Remove
@@ -48,9 +49,10 @@ let found = trie.find('str');
 ```js
 trie.remove('string 1');
 
-let found = trie.find('str');
+found = trie.find('str');
 
-// found = ['string 2', 'string 3']
+console.log(found);
+// ['string 2', 'string 3']
 ```
 
 #### Caching
